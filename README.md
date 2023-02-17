@@ -1,2 +1,4 @@
 # cloud-class
-Repository for COEN-241: Cloud Computing: Prof: Sean Choi
+## COEN-241: Cloud Computing
+### Prof: Sean Choi
+This Repo is for homework purpose.
