@@ -1,0 +1,34 @@
+Step 7: Tasks 
+
+1. Provide a screenshot of invoking the figlet function (10 pts)
+ans. screenshots folder - invoke_figlet.png
+
+2. Complete slack-request/handler.py (20 pt)
+ans. slack-request folder - handler.py
+
+3. Complete slack-interactive/handler.py (20 pt)
+ans. slack-interactive folder - handler.py
+
+4. Provide a screenshot of running the following command (10 pts) : "sudo journalctl -u faasd --lines 40"
+ans. screenshots folder - journalctl_faasd.png
+
+5. Provide a screenshot of your OpenFaaS gateway AFTER deploying figlet, slack-handler and slack-interactive functions (10 pts)
+ans. screenshots folder - openfaas_gateway.png, and openfaas_gateway_list.png
+
+6. Provide a screenshot of invoking slack-request and slack-interactive functions (10 pts)
+ans. both the screenshots show invoking of both the slack-request and slack-interactive in both faas-cli and curl methods. screenshots folder - invoke_slack_request.png, invoke_slack_interactive.png
+
+Extra Credit:
+provide the link to your application and a screenshot of you running your application inside slack for the full credit
+Link to the application: https://cloudclasstalk.slack.com/apps/A04QG789FK3-slack-test?tab=more_info
+Screenshots: 
+- slack_app_01.png, slack_app_02.png
+screenshots of a working version of the slack app, after deploying the serverless function using ngrok
+- ngrok_interactive.png, ngrok_request.png
+screenshots of ngrok public links i.e., which were used for the slack app
+- slack_app_link.png
+a screenshot of the link for the slack app that was made
+- slack_app_inaction.webm
+a video of the working slack app with the deployed serverless functions.
+
+

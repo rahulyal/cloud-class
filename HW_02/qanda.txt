@@ -1,0 +1,66 @@
+Step 8: Questions
+After performing the tasks in step 7 answer the following questions.
+
+1. What is the command to invoke the slack-request function (4 pts)?
+	a. Via Curl
+	b. Via faas-cli
+ans.
+	a. Via Curl : sudo curl http://127.0.0.1:8080/function/slack-request
+	b. Via faas-cli : sudo faas-cli invoke slack-request (and then hit (Control + D))
+
+2. What is the output you see when you invoke the slack-request function? (2 pts)
+ans.
+{"text": "Serverless Message", "attachments": [{"fields": [{"short": true, "value": "100", "title": "Amazing Level"}], "author_icon": "", "image_url": "https://github.com/rahulyal.png", "author_name": "RahulYal", "title": "The Awesome world of Cloud Computing! COEN 241"}, {"text": "COEN 241 is the most awesome class ever!.", "title": "About COEN 241"}, {"title": "Would you recommend COEN 241 to your friends?", "color": "#3AA3E3", "actions": [{"text": "Of Course!", "type": "button", "name": "recommend", "value": "recommend"}, {"text": "Most Definitely!", "type": "button", "name": "definitely", "value": "definitely"}], "callback_id": "response123", "fallback": "Would you recommend COEN 241 to your friends?", "attachment_type": "default"}]}
+
+3. What is the command to invoke the slack-interactive function? (4 pts)
+	a. Via curl
+	b. Via faas-cli
+ans.
+	a. Via curl : sudo curl http://127.0.0.1:8080/function/slack-interactive -d {}
+	b. Via faas-cli : sudo faas-cli invoke slack-interactive (and then enter empty json file {}, hit (Control + D))
+
+4. What is the output you see when you invoke the slack-interactive function? (2 pts)
+ans.
+{"attachments": [{"footer": "Slack Apps built on OpenFaas", "author_link": "http://github.com/rahulyal/cloud-class", "color": "#36a64f", "text": "Head over to COEN 241", "title": "COEN 241", "ts": 123456789, "author_name": "", "title_link": "https://www.scu.edu/engineering/academic-programs/department-of-computer-engineering/graduate/course-descriptions/", "image_url": "https://www.scu.edu/media/offices/umc/scu-brand-guidelines/visual-identity-amp-photography/visual-identity-toolkit/logos-amp-seals/Mission-Dont3.png", "response_type": "ephemeral", "replace_original": true, "footer_icon": "https://a.slack-edge.com/45901/marketing/img/_rebrand/meta/slack_hash_256.png", "pretext": "Ahh yeah! Great choice, COEN 241 is absolutely amazing!", "fallback": "Required plain-text summary of the attachment.", "thumb_url": "https://www.scu.edu/engineering/academic-programs/department-of-computer-engineering/graduate/course-descriptions/", "author_icon": "http://github.com/rahulyal.png"}]}
+
+5. How would you pass different arguments to the functions? (4 pts)
+ans.
+One can pass different arguments to functions in many different ways.
+a. Whilst using "curl" you can add -d (data) argument as shown above while invoking slack-interactive to input an empty json file in the following manner. ex: sudo curl http://127.0.0.1:8080/function/slack-interactive -d {}
+b. You can use echo command and pipe the input argument whilst invoking which is shown in the screenshot of invoking figlet function. ex: echo "Hello, COEN 241" | faas-cli invoke figlet
+c. You can also use the OpenFaas UI, to invoke the functions by giving different input arguments such as Text, JSON, etc.
+
+6. How would you change the slack-interactive function to react to different inputs? (4 pts)
+ans.
+To change the slack-interactive function to react to different inputs, you can modify the code in the handle function. Specifically, you can update the data dictionary to include different attachments that correspond to different input conditions.
+
+For example, let's say you want to respond differently to two different inputs: "yes" and "no". You can update the data dictionary to include two different attachments, one for each input condition. Here's an example:
+
+def handle(req):
+    urlstring = urllib.unquote(req).decode('utf8').strip('payload=')
+    response = json.loads(urlstring)
+    if response['actions'][0]['value'] == 'yes':
+        data = {
+            "attachments": [
+                {
+                    "text": "Great! Here's some information about COEN 241.",
+                    "title": "COEN 241",
+                    "title_link": "https://www.scu.edu/engineering/academic-programs/department-of-computer-engineering/graduate/course-descriptions/",
+                    "color": "#36a64f"
+                }
+            ]
+        }
+    elif response['actions'][0]['value'] == 'no':
+        data = {
+            "attachments": [
+                {
+                    "text": "No problem. Let me know if you have any other questions!",
+                    "color": "#ff0000"
+                }
+            ]
+        }
+    return json.dumps(data)
+
+In this example, if the user selects "yes", the function will respond with an attachment that includes information about COEN 241. If the user selects "no", the function will respond with a different attachment that acknowledges their response but doesn't provide any additional information.
+
+Note that this is just an example, and you can customize the function to respond to different inputs in any way that makes sense for your use case.

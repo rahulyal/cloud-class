@@ -1,0 +1,17 @@
+- invoke_figlet.png
+a screenshot of invoking the figlet function, along with deploying, inspecting, and also giving input in multiple ways.
+- invoke_slack_interactive.png & invoke_slack_request.png
+both the screenshots show invoking of both the slack-request and slack-interactive in both faas-cli and curl methods. screenshots folder - invoke_slack_request.png, invoke_slack_interactive.png
+- journalctl_faasd.png
+a screenshot of running the following command : "sudo journalctl -u faasd --lines 40"
+- openfaas_gateway.png, and openfaas_gateway_list.png
+a screenshot of the OpenFaaS gateway AFTER deploying figlet, slack-handler and slack-interactive functions
+- slack_app_01.png, slack_app_02.png
+screenshots of a working version of the slack app, after deploying the serverless function using ngrok
+- ngrok_interactive.png, ngrok_request.png
+screenshots of ngrok public links i.e., which were used for the slack app
+- slack_app_link.png
+a screenshot of the link for the slack app that was made
+- slack_app_inaction.webm
+a video of the working slack app with the deployed serverless functions.
+
